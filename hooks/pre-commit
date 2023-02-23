@@ -1,0 +1,12 @@
+#!/bin/bash
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+REGEX="^(feat|fix|refact|docs)\/[0-9]+[-]+[a-z0-9-]+$/gm"
+
+if ! [[ "$BRANCH" =~ $REGEX ]]; then
+  echo "Your commit has been rejected because it does not follow the standards defined by the team"
+  echo ""
+  echo "Please use the following format:"
+  echo "feat|fix|refact|docs/1234-branch-name"
+  echo ""
+  exit 1
+fi
